@@ -30,7 +30,7 @@ namespace DAO
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@descripcion", objmoldura.VM_Descripcion);
             command.Parameters.AddWithValue("@imagen", objmoldura.VBM_Imagen);
-            command.Parameters.AddWithValue("@unidadMet", objmoldura.DM_UnidadMetrica);
+            command.Parameters.AddWithValue("@medida", objmoldura.DM_Medida);
             command.Parameters.AddWithValue("@stock", objmoldura.IM_Stock);
             command.Parameters.AddWithValue("@precio", objmoldura.DM_Precio);
             command.Parameters.AddWithValue("@estado", objmoldura.IM_Estado);
@@ -53,7 +53,7 @@ namespace DAO
             command.Parameters.AddWithValue("@idMol", objmoldura.PK_IM_Cod);
             command.Parameters.AddWithValue("@descripcion", objmoldura.VM_Descripcion);
             command.Parameters.AddWithValue("@imagen", objmoldura.VBM_Imagen);
-            command.Parameters.AddWithValue("@unidadMet", objmoldura.DM_UnidadMetrica);
+            command.Parameters.AddWithValue("@medida", objmoldura.DM_Medida);
             command.Parameters.AddWithValue("@stock",objmoldura.IM_Stock);
             command.Parameters.AddWithValue("@precio", objmoldura.DM_Precio);
             command.Parameters.AddWithValue("@estado", objmoldura.IM_Estado);
@@ -86,12 +86,15 @@ namespace DAO
             while(reader.Read())
             {
                 objmoldura.PK_IM_Cod = int.Parse(reader[0].ToString());
-                objtipo.VTM_Nombre = reader[1].ToString();
-                objmoldura.DM_UnidadMetrica = Convert.ToDouble(reader[2].ToString());
-                objmoldura.IM_Estado = int.Parse(reader[3].ToString());
-                objmoldura.IM_Stock = int.Parse(reader[4].ToString());
-                objmoldura.DM_Precio = Convert.ToDouble(reader[5].ToString());
-                objmoldura.VBM_Imagen = Convert.ToByte(reader[6].ToString());
+                objmoldura.VM_Descripcion = reader[1].ToString();
+                objtipo.PK_ITM_Tipo= int.Parse(reader[2].ToString());
+                objtipo.VTM_Nombre = reader[3].ToString();
+                objmoldura.DM_Medida = Convert.ToDouble(reader[4].ToString());
+                objtipo.VTM_UnidadMetrica = reader[5].ToString();
+                objmoldura.IM_Estado = int.Parse(reader[6].ToString());
+                objmoldura.IM_Stock = int.Parse(reader[7].ToString());
+                objmoldura.DM_Precio = Convert.ToDouble(reader[8].ToString());
+                objmoldura.VBM_Imagen = Convert.ToByte(reader[9].ToString());
             }
             conexion.Close();
             conexion.Dispose();
