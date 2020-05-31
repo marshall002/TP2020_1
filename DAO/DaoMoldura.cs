@@ -63,6 +63,32 @@ namespace DAO
             tipomol.Fill(DS);
             return DS;
         }
+            public void ObtenerMoldura(DtoMoldura objmoldura, DtoTipoMoldura objtipo)
+        {
+            SqlCommand command = new SqlCommand("SP_Obtener_Moldura", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@codMol", objmoldura.PK_IM_Cod);
+            DataSet ds = new DataSet();
+            conexion.Open();
+            SqlDataAdapter moldura = new SqlDataAdapter(command);
+            moldura.Fill(ds);
+            moldura.Dispose();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while(reader.Read())
+            {
+                objmoldura.PK_IM_Cod = int.Parse(reader[0].ToString());
+                objtipo.VTM_Nombre = reader[1].ToString();
+                objmoldura.DM_UnidadMetrica = Convert.ToDouble(reader[2].ToString());
+                objmoldura.IM_Estado = int.Parse(reader[3].ToString());
+                objmoldura.IM_Stock = int.Parse(reader[4].ToString());
+                objmoldura.DM_Precio = Convert.ToDouble(reader[5].ToString());
+                objmoldura.VBM_Imagen = Convert.ToByte(reader[6].ToString());
+            }
+            conexion.Close();
+            conexion.Dispose();
+        }
 
     }
 }
