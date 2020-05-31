@@ -58,7 +58,7 @@
 	</div>
 	<!-- #END# Search Bar -->
 	<!-- Top Bar -->
-	<nav class="navbar">
+	<nav class="navbar theme-red ">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>

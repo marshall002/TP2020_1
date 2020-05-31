@@ -13,22 +13,25 @@
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css" />
-
-	<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
-	<link href="plugins/node-waves/waves.css" rel="stylesheet" />
-	<link href="plugins/animate-css/animate.css" rel="stylesheet" />
-	<link href="plugins/morrisjs/morris.css" rel="stylesheet" />
+    <%--<link href="css/googleapis_latyn_cyrillic.css" rel="stylesheet" />--%>
+<%--    <link href="css/googleapis_material_Icons.css" rel="stylesheet" />--%>
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
 	<!-- Custom Css -->
 	<link href="css/style.css" rel="stylesheet" />
 	<link href="css/themes/all-themes.css" rel="stylesheet" />
-
+    
+	<script src="plugins/jquery/jquery.min.js"></script>
 	<title>SCPEDR</title>
 
 	<asp:ContentPlaceHolder ID="cph_header" runat="server">
 	</asp:ContentPlaceHolder>
 </head>
-<body class="theme-indigo">
+<body class="theme-red"> <!-- NAVBAR CAMBIAR COLOR -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
 			<div class="preloader">
@@ -55,7 +58,7 @@
 		</div>
 	</div>
 	<form id="form1" runat="server">
-		<nav class="theme-indigo navbar">
+		<nav class="navbar">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
@@ -172,6 +175,8 @@
 
 		<asp:ContentPlaceHolder ID="cph_footer" runat="server">
 		</asp:ContentPlaceHolder>
+         <asp:ContentPlaceHolder ID="cph_Js" runat="server">
+        </asp:ContentPlaceHolder>
 	</form>
 
 	<div class="modal fade" id="modalEnConstruccion" tabindex="-1" role="dialog">
@@ -189,45 +194,41 @@
 		</div>
 	</div>
 	<!-- Jquery Core Js -->
-	<script src="plugins/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core Js -->
-	<script src="plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+    <%--<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>--%>
+    <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="../../plugins/node-waves/waves.js"></script>
 
-	<!-- Select Plugin Js -->
-	<script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="../../plugins/autosize/autosize.js"></script>
 
-	<!-- Slimscroll Plugin Js -->
-	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="../../plugins/momentjs/moment.js"></script>
+    <script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+    <script src="../../plugins/jquery-countto/jquery.countTo.js"></script>
 
-	<!-- Waves Effect Plugin Js -->
-	<script src="plugins/node-waves/waves.js"></script>
+    <script src="../../plugins/raphael/raphael.min.js"></script>
 
-	<!-- Jquery CountTo Plugin Js -->
-	<script src="plugins/jquery-countto/jquery.countTo.js"></script>
+    <script src="../../plugins/morrisjs/morris.js"></script>
+    <script src="../../plugins/chartjs/Chart.bundle.js"></script>
+    <script src="../../plugins/flot-charts/jquery.flot.js"></script>
+    <script src="../../plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="../../plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script src="../../plugins/flot-charts/jquery.flot.categories.js"></script>
+    <script src="../../plugins/flot-charts/jquery.flot.time.js"></script>
+    <script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
-	<!-- Morris Plugin Js -->
-	<script src="plugins/raphael/raphael.min.js"></script>
-	<script src="plugins/morrisjs/morris.js"></script>
+    <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/pages/ui/tooltips-popovers.js"></script>
+    <%--<script src="../../js/pages/forms/basic-form-elements.js"></script>--%>
+    <script src="../../js/pages/ui/notifications.js"></script>
+    <script src="../../js/pages/ui/modals.js"></script>
+    <script src="js/pages/index.js"></script>
+    <script src="../../plugins/sweetalert/sweetalert.min.js"></script>
 
-	<!-- ChartJs -->
-	<script src="plugins/chartjs/Chart.bundle.js"></script>
-
-	<!-- Flot Charts Plugin Js -->
-	<script src="plugins/flot-charts/jquery.flot.js"></script>
-	<script src="plugins/flot-charts/jquery.flot.resize.js"></script>
-	<script src="plugins/flot-charts/jquery.flot.pie.js"></script>
-	<script src="plugins/flot-charts/jquery.flot.categories.js"></script>
-	<script src="plugins/flot-charts/jquery.flot.time.js"></script>
-
-	<!-- Sparkline Chart Plugin Js -->
-	<script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
-
-	<!-- Custom Js -->
-	<script src="js/admin.js"></script>
-	<script src="js/pages/index.js"></script>
-
-	<!-- Demo Js -->
-	<script src="js/demo.js"></script>
-</body>
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/pages/ui/dialogs.js"></script>
+    <script src="js/demo.js"></script>
+    <script src="../../js/public/utils.js"></script></body>
 </html>
