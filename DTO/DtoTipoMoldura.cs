@@ -10,5 +10,6 @@ namespace DTO
     {
         public int PK_ITM_Tipo { get; set; }
         public string VTM_Nombre { get; set; }
+        public string VTM_UnidadMetrica { get; set; }
     }
 }
