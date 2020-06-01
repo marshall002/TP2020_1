@@ -94,7 +94,7 @@ namespace DAO
                 objmoldura.IM_Estado = int.Parse(reader[6].ToString());
                 objmoldura.IM_Stock = int.Parse(reader[7].ToString());
                 objmoldura.DM_Precio = Convert.ToDouble(reader[8].ToString());
-                objmoldura.VBM_Imagen = Convert.ToByte(reader[9].ToString());
+                objmoldura.VBM_Imagen = Encoding.ASCII.GetBytes(reader[9].ToString());
             }
             conexion.Close();
             conexion.Dispose();
