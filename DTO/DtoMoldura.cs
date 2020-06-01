@@ -10,7 +10,7 @@ namespace DTO
     {
         public int PK_IM_Cod { get; set; }
         public string VM_Descripcion { get; set; }
-        public byte VBM_Imagen { get; set; }
+        public byte [] VBM_Imagen { get; set; }
         public double DM_UnidadMetrica { get; set; }
         public int IM_Stock { get; set; }
         public double DM_Precio { get; set; }
