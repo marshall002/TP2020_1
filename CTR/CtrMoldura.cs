@@ -21,9 +21,13 @@ namespace CTR
         {
             objDaoMoldura.RegistrarMoldura(objDtoMoldura);
         }
-        public DataSet  OpcionesTipoMoldura()
+        public DataSet OpcionesTipoMoldura()
         {
             return objDaoMoldura.desplegableTipoMoldura();
+        }
+        public DataTable ListaMolduras()
+        {
+            return objDaoMoldura.ListarMolduras();
         }
     }
 }

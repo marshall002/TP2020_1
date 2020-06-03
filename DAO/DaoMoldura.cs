@@ -12,7 +12,11 @@ namespace DAO
     public class DaoMoldura
     {
         SqlConnection conexion;
-            public DataTable ListarMolduras()
+        public DaoMoldura()
+        {
+            conexion = new SqlConnection(ConexionBD.CadenaConexion);
+        }
+        public DataTable ListarMolduras()
         {
             DataTable dtmolduras = null;
             conexion.Open();
@@ -24,9 +28,9 @@ namespace DAO
             conexion.Close();
             return dtmolduras;
         }
-            public void RegistrarMoldura(DtoMoldura objmoldura)
+        public void RegistrarMoldura(DtoMoldura objmoldura)
         {
-            SqlCommand command = new SqlCommand("SP_Registar_Moldura", conexion);
+            SqlCommand command = new SqlCommand("SP_Registrar_Moldura", conexion);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@descripcion", objmoldura.VM_Descripcion);
             command.Parameters.AddWithValue("@imagen", objmoldura.VBM_Imagen);
@@ -36,17 +40,17 @@ namespace DAO
             command.Parameters.AddWithValue("@estado", objmoldura.IM_Estado);
             command.Parameters.AddWithValue("@idtipom", objmoldura.FK_ITM_Tipo);
             conexion.Open();
-            SqlParameter retValue = new SqlParameter("@NewId",SqlDbType.Int);
-            retValue.Direction = ParameterDirection.ReturnValue;
-            command.Parameters.Add(retValue);
-            using (SqlDataReader dr = command.ExecuteReader())
-            { 
-                objmoldura.PK_IM_Cod = Convert.ToInt32(retValue.Value);
-            }   
-            //command.ExecuteNonQuery();
-                conexion.Close();
+            //SqlParameter retValue = new SqlParameter("@NewId", SqlDbType.Int);
+            //retValue.Direction = ParameterDirection.ReturnValue;
+            //command.Parameters.Add(retValue);
+            //using (SqlDataReader dr = command.ExecuteReader())
+            //{
+            //    objmoldura.PK_IM_Cod = Convert.ToInt32(retValue.Value);
+            //}
+            command.ExecuteNonQuery();
+            conexion.Close();
         }
-            public void ActualizarMoldura(DtoMoldura objmoldura)
+        public void ActualizarMoldura(DtoMoldura objmoldura)
         {
             SqlCommand command = new SqlCommand("SP_Actualizar_Moldura", conexion);
             command.CommandType = CommandType.StoredProcedure;
@@ -54,7 +58,7 @@ namespace DAO
             command.Parameters.AddWithValue("@descripcion", objmoldura.VM_Descripcion);
             command.Parameters.AddWithValue("@imagen", objmoldura.VBM_Imagen);
             command.Parameters.AddWithValue("@medida", objmoldura.DM_Medida);
-            command.Parameters.AddWithValue("@stock",objmoldura.IM_Stock);
+            command.Parameters.AddWithValue("@stock", objmoldura.IM_Stock);
             command.Parameters.AddWithValue("@precio", objmoldura.DM_Precio);
             command.Parameters.AddWithValue("@estado", objmoldura.IM_Estado);
             command.Parameters.AddWithValue("@idtipom", objmoldura.FK_ITM_Tipo);
@@ -62,7 +66,7 @@ namespace DAO
             command.ExecuteNonQuery();
             conexion.Close();
         }
-            public DataSet desplegabletTipoMoldua()
+        public DataSet desplegableTipoMoldura()
         {
             SqlDataAdapter tipomol = new SqlDataAdapter("SP_Desplegable_Tipo_Moldura", conexion);
             tipomol.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -70,7 +74,7 @@ namespace DAO
             tipomol.Fill(DS);
             return DS;
         }
-            public void ObtenerMoldura(DtoMoldura objmoldura, DtoTipoMoldura objtipo)
+        public void ObtenerMoldura(DtoMoldura objmoldura, DtoTipoMoldura objtipo)
         {
             SqlCommand command = new SqlCommand("SP_Obtener_Moldura", conexion);
             command.CommandType = CommandType.StoredProcedure;
@@ -83,18 +87,18 @@ namespace DAO
 
             SqlDataReader reader = command.ExecuteReader();
 
-            while(reader.Read())
+            while (reader.Read())
             {
                 objmoldura.PK_IM_Cod = int.Parse(reader[0].ToString());
                 objmoldura.VM_Descripcion = reader[1].ToString();
-                objtipo.PK_ITM_Tipo= int.Parse(reader[2].ToString());
+                objtipo.PK_ITM_Tipo = int.Parse(reader[2].ToString());
                 objtipo.VTM_Nombre = reader[3].ToString();
                 objmoldura.DM_Medida = Convert.ToDouble(reader[4].ToString());
                 objtipo.VTM_UnidadMetrica = reader[5].ToString();
                 objmoldura.IM_Estado = int.Parse(reader[6].ToString());
                 objmoldura.IM_Stock = int.Parse(reader[7].ToString());
                 objmoldura.DM_Precio = Convert.ToDouble(reader[8].ToString());
-                objmoldura.VBM_Imagen = Convert.ToByte(reader[9].ToString());
+                objmoldura.VBM_Imagen = Encoding.ASCII.GetBytes(reader[9].ToString());
             }
             conexion.Close();
             conexion.Dispose();
