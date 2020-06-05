@@ -40,9 +40,9 @@
                                     </div>
                                     <div class="col-sm-2">
 
-                                        <button type="button" class="btn btn-danger btn-circle-lg waves-effect waves-circle waves-float">
+                                        <asp:LinkButton runat="server" ID="btnSearch" CssClass="btn btn-danger btn-circle-lg waves-effect waves-circle waves-float" OnClick="btnSearch_Click">
                                             <i class="material-icons">search</i>
-                                        </button>
+                                        </asp:LinkButton>
                                     </div>
                                     <div class="col-sm-1">
                                         <asp:LinkButton runat="server" CssClass="btn btn-danger btn-circle-lg waves-effect waves-circle waves-float" OnClick="btnRegistrar_Click">
@@ -53,7 +53,7 @@
                             </div>
                             <div class="body table-responsive ">
 
-                                <asp:GridView ID="gvCatalogo" CssClass="table table-bordered table-hover js-basic-example dataTable" DataKeyNames="PK_IM_Cod" runat="server" AutoGenerateColumns="False" EmptyDataText="No existen registros" ShowHeaderWhenEmpty="True" OnRowCommand="gvCatalogo_RowCommand">
+                                <asp:GridView ID="gvCatalogo" CssClass="table table-bordered table-hover js-basic-example dataTable" DataKeyNames="PK_IM_Cod,VTM_Nombre" runat="server" OnRowDataBound="gvCatalogo_RowDataBound" AutoGenerateColumns="False" EmptyDataText="No existen registros" ShowHeaderWhenEmpty="True" OnRowCommand="gvCatalogo_RowCommand">
                                     <Columns>
                                         <asp:BoundField DataField="PK_IM_Cod" HeaderText="Codigo" />
                                         <asp:BoundField DataField="VTM_Nombre" HeaderText="Tipo de moldura" />
@@ -79,30 +79,44 @@
             </div>
         </div>
         <div class="modal fade" id="defaultmodal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <asp:UpdatePanel runat="server" ID="updPanelModal" UpdateMode="Always">
-                            <ContentTemplate>
+                    <asp:UpdatePanel runat="server" ID="updPanelModal" UpdateMode="Always">
+                        <ContentTemplate>
+                            <div class="modal-header navbar">
+                                <h4 class="modal-title" id="tituloModal" runat="server" style="color: white;"></h4>
+                            </div>
+                            <div class="modal-body">
+
                                 <div class="row">
-                                    <asp:Image ID="Image1" Height="500px" Width="500px" runat="server" />
+                                    <div class="text-center">
+                                        <asp:Image ID="Image1" Height="500px" Width="500px" runat="server" class="rounded" />
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <asp:TextBox ID="txtDescripcionModal" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <div class="col-md-12">
+                                        <div class="row clearfix">
+                                            <div class="form-group form-float">
+                                                <label class="form-label">Descripción :</label>
+                                                <div class="form-line focused">
+                                                    <div class="form-line">
+                                                        <asp:TextBox ID="txtDescripcionModal" class="form-control" runat="server" ReadOnly></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>
-
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_footer" runat="Server">

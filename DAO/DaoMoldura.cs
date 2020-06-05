@@ -105,9 +105,9 @@ namespace DAO
         }
         public void ObtenerImgMoldura(DtoMoldura objmoldura)
         {
-            SqlCommand command = new SqlCommand("SP_Obtener_Moldura", conexion);
+            SqlCommand command = new SqlCommand("SP_GetImageById", conexion);
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@codMol", objmoldura.PK_IM_Cod);
+            command.Parameters.AddWithValue("@Id", objmoldura.PK_IM_Cod);
             DataSet ds = new DataSet();
             conexion.Open();
             SqlDataAdapter moldura = new SqlDataAdapter(command);
@@ -118,8 +118,8 @@ namespace DAO
 
             while (reader.Read())
             {
-                objmoldura.VBM_Imagen = Encoding.ASCII.GetBytes(reader[0].ToString());
-                objmoldura.VM_Descripcion = reader[1].ToString();;
+                objmoldura.VBM_Imagen = Encoding.ASCII.GetBytes(reader[1].ToString());
+                objmoldura.VM_Descripcion = reader[1].ToString();
             }
             conexion.Close();
             conexion.Dispose();
