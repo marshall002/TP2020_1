@@ -78,20 +78,31 @@
                 </asp:UpdatePanel>
             </div>
         </div>
-            <div class="modal fade" id="Test" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="smallModalLabel">asdasdsasadds construcci&oacute;n!!</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+        <div class="modal fade" id="defaultmodal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <asp:UpdatePanel runat="server" ID="updPanelModal" UpdateMode="Always">
+                            <ContentTemplate>
+                                <div class="row">
+                                    <asp:Image ID="Image1" Height="500px" Width="500px" runat="server" />
+                                </div>
+                                <div class="row">
+                                    <asp:TextBox ID="txtDescripcionModal" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_footer" runat="Server">

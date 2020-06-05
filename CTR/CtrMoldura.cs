@@ -29,5 +29,9 @@ namespace CTR
         {
             return objDaoMoldura.ListarMolduras();
         }
+        public void ObtenerImagen_Desc_Moldura(DtoMoldura objDtoMoldura)
+        {
+            objDaoMoldura.ObtenerImgMoldura(objDtoMoldura);
+        }
     }
 }

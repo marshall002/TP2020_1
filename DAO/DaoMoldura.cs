@@ -103,6 +103,27 @@ namespace DAO
             conexion.Close();
             conexion.Dispose();
         }
+        public void ObtenerImgMoldura(DtoMoldura objmoldura)
+        {
+            SqlCommand command = new SqlCommand("SP_Obtener_Moldura", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@codMol", objmoldura.PK_IM_Cod);
+            DataSet ds = new DataSet();
+            conexion.Open();
+            SqlDataAdapter moldura = new SqlDataAdapter(command);
+            moldura.Fill(ds);
+            moldura.Dispose();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                objmoldura.VBM_Imagen = Encoding.ASCII.GetBytes(reader[0].ToString());
+                objmoldura.VM_Descripcion = reader[1].ToString();;
+            }
+            conexion.Close();
+            conexion.Dispose();
+        }
 
     }
 }
