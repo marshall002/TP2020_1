@@ -20,6 +20,8 @@ public class ghUploadFile : IHttpHandler
             {
                 CtrMoldura oBLAPISol = new CtrMoldura();
                 _Log.CustomWriteOnLog("PropiedadMoldura", "1");
+                string ID = context.Request.QueryString["Id"].ToString();
+
 
                 byte[] fileData = null;
                 _Log.CustomWriteOnLog("PropiedadMoldura", " 2");
@@ -28,8 +30,9 @@ public class ghUploadFile : IHttpHandler
                     fileData = binaryReader.ReadBytes(context.Request.Files[0].ContentLength);
                 }
                 _Log.CustomWriteOnLog("PropiedadMoldura", "3");
+                _Log.CustomWriteOnLog("PropiedadMoldura", "Valor de Id a actualizar es" + ID);
 
-                oBLAPISol.registrarImgMoldura(fileData, 380);
+                oBLAPISol.registrarImgMoldura(fileData, int.Parse(ID));
                 _Log.CustomWriteOnLog("PropiedadMoldura", "4");
             }
             _Log.CustomWriteOnLog("PropiedadMoldura", "5");

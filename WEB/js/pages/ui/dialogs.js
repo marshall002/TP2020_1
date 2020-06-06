@@ -44,7 +44,7 @@ function showWithTitleMessage() {
 }
 
 function showSuccessMessage() {
-    swal("Good job!", "You clicked the button!", "success");
+    swal("Todo guardado", "Pulsa el botón y se te redirigirá", "success");
 }
 
 function showConfirmMessage() {

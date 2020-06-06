@@ -28,8 +28,8 @@
 
                                         <asp:Image ID="Image1" Height="500px" Width="500px" runat="server" class="rounded" />
 
-                                                <asp:FileUpload ID="FileUpload1" CssClass="btn btn-warning" runat="server" Width="100%" ClientIDMode="Static" />
-
+                                        <%--<asp:FileUpload ID="FileUpload1" CssClass="btn btn-warning" runat="server" Width="100%" ClientIDMode="Static" />--%>
+                                        <input name="fileAnexo" type="file" id="FileUpload1" accept=".png,.jpg" class="btn btn-warning" style="width: 100%;" />
                                         <br />
                                         <%--<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" />--%>
                                     </div>
@@ -195,6 +195,48 @@
                     </div>
                 </div>
             </div>
+
+            <%--<div class="modal fade" id="confirmacion" tabindex="-1" role="dialog">
+
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Always">
+                            <ContentTemplate>
+                                <div class="modal-header navbar">
+                                    <h4 class="modal-title" id="H1" runat="server" style="color: white;"></h4>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <div class="sa-icon sa-custom" style="background-image: url(&quot;../../images/thumbs-up.png&quot;); width: 80px; height: 80px;"></div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row clearfix">
+                                                <div class="form-group form-float">
+                                                    <label class="form-label">Descripción :</label>
+                                                    <div class="form-line focused">
+                                                        <div class="form-line">
+                                                            <asp:TextBox ID="TextBox1" class="form-control" runat="server" ReadOnly></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+            </div>--%>
         </form>
 
     </section>
@@ -204,5 +246,19 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cph_Js" runat="Server">
     <script src="UploadFile.js"></script>
+    <script>
+        function showSuccessMessage2() {
+            setTimeout(function () {
+                swal({
+                    title: "Todo guardado",
+                    text: "Pulsa el botón y se te redirigirá",
+                    type: "success"
+                }, function () {
+                    window.location = "GestionCatalogo.aspx";
+                });
+            }, 1000);
+        }
+        
+    </script>
 </asp:Content>
 

@@ -49,7 +49,7 @@ public partial class GestionCatalogo : System.Web.UI.Page
                 var colsNoVisible = gvCatalogo.DataKeys[index].Values;
                 string id = colsNoVisible[0].ToString();
                 string Nombre = colsNoVisible[1].ToString();
-                ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', '" + Nombre + "', 'bottom', 'center', null, null);", true);
+                //ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', '" + Nombre + "', 'bottom', 'center', null, null);", true);
                 objDtoMoldura.PK_IM_Cod = int.Parse(id);
                 objctrMoldura.ObtenerImagen_Desc_Moldura(objDtoMoldura);
                 _log.CustomWriteOnLog("GestionCatalogo", "ID" + id);

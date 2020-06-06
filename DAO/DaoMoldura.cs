@@ -33,21 +33,25 @@ namespace DAO
             SqlCommand command = new SqlCommand("SP_Registrar_Moldura", conexion);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@descripcion", objmoldura.VM_Descripcion);
-            command.Parameters.AddWithValue("@imagen", objmoldura.VBM_Imagen);
+            //command.Parameters.AddWithValue("@imagen", DBNull.Value);
+            var binary1 = command.Parameters.Add("@imagen", SqlDbType.VarBinary, -1);
+            binary1.Value = DBNull.Value;
             command.Parameters.AddWithValue("@medida", objmoldura.DM_Medida);
             command.Parameters.AddWithValue("@stock", objmoldura.IM_Stock);
             command.Parameters.AddWithValue("@precio", objmoldura.DM_Precio);
             command.Parameters.AddWithValue("@estado", objmoldura.IM_Estado);
             command.Parameters.AddWithValue("@idtipom", objmoldura.FK_ITM_Tipo);
+            command.Parameters.Add("@NewId", SqlDbType.Int).Direction = ParameterDirection.Output;
             conexion.Open();
-            SqlParameter retValue = new SqlParameter("@NewId", SqlDbType.Int);
-            retValue.Direction = ParameterDirection.ReturnValue;
-            command.Parameters.Add(retValue);
+            command.ExecuteNonQuery();
+
+            //SqlParameter retValue = new SqlParameter("@NewId", SqlDbType.Int).Direction=Par;
+            //retValue.Direction = ParameterDirection.ReturnValue;
+            //command.Parameters.Add(retValue);
             using (SqlDataReader dr = command.ExecuteReader())
             {
-                objmoldura.PK_IM_Cod = Convert.ToInt32(retValue.Value);
+                objmoldura.PK_IM_Cod = Convert.ToInt32(command.Parameters["@NewId"].Value);
             }
-            command.ExecuteNonQuery();
             conexion.Close();
         }
         public void RegistrarImgMoldura(byte[] bytes, int id)
