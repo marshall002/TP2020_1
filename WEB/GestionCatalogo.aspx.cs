@@ -90,6 +90,13 @@ public partial class GestionCatalogo : System.Web.UI.Page
             }
 
         }
+        else if (e.CommandName == "Actualizar")
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            var colsNoVisible = gvCatalogo.DataKeys[index].Values;
+            string id = colsNoVisible[0].ToString();
+            Response.Redirect("~/PropiedadMoldura.aspx?ID="+id);
+        }
     }
 
     protected void gvCatalogo_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -107,7 +114,7 @@ public partial class GestionCatalogo : System.Web.UI.Page
             }
         }
     }
-    
+
     protected void btnSearch_Click(object sender, EventArgs e)
     {
 

@@ -33,5 +33,18 @@ namespace CTR
         {
             objDaoMoldura.ObtenerImgMoldura(objDtoMoldura);
         }
+        public void ObtenerMoldura(DtoMoldura objmoldura, DtoTipoMoldura objtipo)
+        {
+            objDaoMoldura.ObtenerMoldura(objmoldura, objtipo);
+        }
+        public void ActualizarRegistroMoldura(DtoMoldura objmoldura)
+        {
+            objDaoMoldura.ActualizarMoldura(objmoldura);
+        }
+        public void ActualizarImgMoldura(DtoMoldura objmoldura)
+        {
+            objDaoMoldura.ActualizarImgMoldura(objmoldura);
+        }
+        
     }
 }

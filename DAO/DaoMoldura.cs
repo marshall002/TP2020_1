@@ -56,7 +56,6 @@ namespace DAO
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@idMol", objmoldura.PK_IM_Cod);
             command.Parameters.AddWithValue("@descripcion", objmoldura.VM_Descripcion);
-            command.Parameters.AddWithValue("@imagen", objmoldura.VBM_Imagen);
             command.Parameters.AddWithValue("@medida", objmoldura.DM_Medida);
             command.Parameters.AddWithValue("@stock", objmoldura.IM_Stock);
             command.Parameters.AddWithValue("@precio", objmoldura.DM_Precio);
@@ -66,6 +65,17 @@ namespace DAO
             command.ExecuteNonQuery();
             conexion.Close();
         }
+        public void ActualizarImgMoldura(DtoMoldura objmoldura)
+        {
+            SqlCommand command = new SqlCommand("SP_Actualizar_Img_Moldura", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@idMol", objmoldura.PK_IM_Cod);
+            command.Parameters.AddWithValue("@imagen", objmoldura.VBM_Imagen);
+            conexion.Open();
+            command.ExecuteNonQuery();
+            conexion.Close();
+        }
+
         public DataSet desplegableTipoMoldura()
         {
             SqlDataAdapter tipomol = new SqlDataAdapter("SP_Desplegable_Tipo_Moldura", conexion);

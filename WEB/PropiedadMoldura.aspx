@@ -4,12 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_body" runat="Server">
     <section>
-        <form id="form1" runat="server"  method="POST">
+        <form id="form1" runat="server" method="POST">
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div class="block-header">
-                        <h1>Agregar moldura</h1>
+                        <h1 id="txtPagina" runat="server"></h1>
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -27,9 +27,12 @@
                                         <div class="col-sm-6">
                                             <div>
 
+                                                <asp:Image ID="Image1" Height="500px" Width="500px" runat="server" class="rounded" />
+
+
                                                 <asp:FileUpload ID="FileUpload1" CssClass="btn btn-warning" runat="server" Width="100%" />
                                                 <br />
-                                                
+
 
                                                 <%--<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" />--%>
                                             </div>
@@ -58,14 +61,8 @@
                                         <div class="col-md-4">
                                             <div class="row clearfix">
                                                 <div class="col-sm-12">
-                                                    <div class="form-group form-float">
-                                                        <label class="form-label">Tipo de moldura</label>
-                                                        <div class="form-line focused">
-                                                            <div class="form-line">
-                                                                <asp:DropDownList ID="ddlTipoMoldura" class="form-control" runat="server"></asp:DropDownList>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <label class="form-label">Tipo de moldura</label>
+                                                    <asp:DropDownList ID="ddlTipoMoldura" class="form-control" runat="server"></asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +87,7 @@
                                                 <div class="col-sm-12">
                                                     <label class="form-label">Estado</label>
                                                     <asp:DropDownList runat="server" ID="ddlEstadoMoldura" CssClass="form-control" OnSelectedIndexChanged="ddlEstadoMoldura_SelectedIndexChanged">
-                                                        <asp:ListItem Value="">Seleccione la hora</asp:ListItem>
+                                                        <asp:ListItem Value="">--Seleccione--</asp:ListItem>
                                                         <asp:ListItem Value="1">Habilitado</asp:ListItem>
                                                         <asp:ListItem Value="0">Deshabilitado</asp:ListItem>
                                                     </asp:DropDownList>
@@ -145,17 +142,16 @@
 
                                             <asp:LinkButton ID="btnCancelar" runat="server" CssClass="btn bg-red waves-effect" Style="float: right" Width="100%" Text="Cancelar" OnClick="btnCancelar_Click">
 												<i class="material-icons">arrow_back</i>Regresar
-											</asp:LinkButton>
+                                            </asp:LinkButton>
 
                                         </div>
                                         <div class="col-sm-3 right">
-                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always"
-                                                >
+                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn bg-indigo waves-effect" Style="float: right" Width="100%" Text="Guardar"
-                                                        OnClick="btnGuardar_Click" ></asp:Button>
+                                                        OnClick="btnGuardar_Click"></asp:Button>
                                                 </ContentTemplate>
-                                                
+
                                             </asp:UpdatePanel>
 
 
