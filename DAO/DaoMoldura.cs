@@ -40,6 +40,23 @@ namespace DAO
             command.Parameters.AddWithValue("@estado", objmoldura.IM_Estado);
             command.Parameters.AddWithValue("@idtipom", objmoldura.FK_ITM_Tipo);
             conexion.Open();
+            SqlParameter retValue = new SqlParameter("@NewId", SqlDbType.Int);
+            retValue.Direction = ParameterDirection.ReturnValue;
+            command.Parameters.Add(retValue);
+            using (SqlDataReader dr = command.ExecuteReader())
+            {
+                objmoldura.PK_IM_Cod = Convert.ToInt32(retValue.Value);
+            }
+            command.ExecuteNonQuery();
+            conexion.Close();
+        }
+        public void RegistrarImgMoldura(byte[] bytes, int id)
+        {
+            SqlCommand command = new SqlCommand("SP_Registrar_Img_Moldura", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@idMol", id);
+            command.Parameters.AddWithValue("@imagen", bytes);
+            conexion.Open();
             //SqlParameter retValue = new SqlParameter("@NewId", SqlDbType.Int);
             //retValue.Direction = ParameterDirection.ReturnValue;
             //command.Parameters.Add(retValue);

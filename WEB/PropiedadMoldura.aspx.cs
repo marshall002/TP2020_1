@@ -23,7 +23,7 @@ public partial class Prueba : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Page.Form.Attributes.Add("enctype", "multipart/form-data");
+        Page.Form.Attributes.Add("enctype", "multipart/form-data");
         Image1.Visible = false;
         txtPagina.InnerText = "Agregar moldura";
         if (!Page.IsPostBack)
@@ -107,99 +107,108 @@ public partial class Prueba : System.Web.UI.Page
 
     protected void btnGuardar_Click(object sender, EventArgs e)
     {
+        _log.CustomWriteOnLog("PropiedadMoldura", "Llego acá");
         try
         {
-            if (Request.Params["Id"] != null)
-            {
-                objDtoMoldura.PK_IM_Cod = int.Parse(Request.Params["Id"]);
-                _log.CustomWriteOnLog("PropiedadMoldura", "Entro a evento actualizar");
-                if (FileUpload1.HasFile == false)
-                {
-                    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', 'Debe agregar una imagen valida', 'bottom', 'center', null, null);", true);
-                    _log.CustomWriteOnLog("PropiedadMoldura", "No hay registro");
-                }
-                else
-                {
-                    _log.CustomWriteOnLog("PropiedadMoldura", "Entro a evento actualizar");
+        Utils.AddScriptClientUpdatePanel(upBotonEnviar, "uploadFileDocuments();");
+            //if (Request.Params["Id"] != null)
+            //{
+            //    objDtoMoldura.PK_IM_Cod = int.Parse(Request.Params["Id"]);
+            //    _log.CustomWriteOnLog("PropiedadMoldura", "Entro a evento actualizar");
+            //    if (FileUpload1.HasFile == false)
+            //    {
+            //        ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', 'Debe agregar una imagen valida', 'bottom', 'center', null, null);", true);
+            //        _log.CustomWriteOnLog("PropiedadMoldura", "No hay registro");
+            //    }
+            //    else
+            //    {
+            //        _log.CustomWriteOnLog("PropiedadMoldura", "Entro a evento actualizar");
 
-                    HttpPostedFile postedFile = FileUpload1.PostedFile;
-                    string FileName = Path.GetFileName(postedFile.FileName);
-                    string fileExtension = Path.GetExtension(postedFile.FileName);
-                    int fileSize = postedFile.ContentLength;
+            //        HttpPostedFile postedFile = FileUpload1.PostedFile;
+            //        string FileName = Path.GetFileName(postedFile.FileName);
+            //        string fileExtension = Path.GetExtension(postedFile.FileName);
+            //        int fileSize = postedFile.ContentLength;
 
-                    if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" || fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
-                    {
-                        Stream stream = postedFile.InputStream;
-                        BinaryReader binaryReader = new BinaryReader(stream);
-                        byte[] bytes = binaryReader.ReadBytes((int)stream.Length);
-                        objDtoMoldura.VBM_Imagen = bytes;
-                        objCtrMoldura.ActualizarImgMoldura(objDtoMoldura);
-                    }
+            //        if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" || fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
+            //        {
+            //            Stream stream = postedFile.InputStream;
+            //            BinaryReader binaryReader = new BinaryReader(stream);
+            //            byte[] bytes = binaryReader.ReadBytes((int)stream.Length);
+            //            objDtoMoldura.VBM_Imagen = bytes;
+            //            objCtrMoldura.ActualizarImgMoldura(objDtoMoldura);
+            //        }
 
 
-                }
+            //    }
 
-                _log.CustomWriteOnLog("PropiedadMoldura", "txtTipoMoldura = " + ddlTipoMoldura.SelectedValue);
-                _log.CustomWriteOnLog("PropiedadMoldura", "ddlEstadoMoldura = " + ddlEstadoMoldura.SelectedValue);
-                _log.CustomWriteOnLog("PropiedadMoldura", "txtStock = " + txtStock.Text);
-                _log.CustomWriteOnLog("PropiedadMoldura", "txtPrecio = " + txtPrecio.Text);
-                objDtoMoldura.DM_Precio = Double.Parse(txtPrecio.Text);
-                objDtoMoldura.IM_Estado = int.Parse(ddlEstadoMoldura.SelectedValue);
-                objDtoMoldura.IM_Stock = int.Parse(txtStock.Text);
-                objDtoMoldura.FK_ITM_Tipo = int.Parse(ddlTipoMoldura.SelectedValue);
-                objDtoMoldura.VM_Descripcion = txtDescripcion.Text;
-                objDtoMoldura.DM_Medida = Double.Parse(txtMedida.Text);
-                objCtrMoldura.ActualizarRegistroMoldura(objDtoMoldura);
-                _log.CustomWriteOnLog("PropiedadMoldura", "Actualizado");
-                ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', 'Agregado', 'bottom', 'center', null, null);", true);
+            //    _log.CustomWriteOnLog("PropiedadMoldura", "txtTipoMoldura = " + ddlTipoMoldura.SelectedValue);
+            //    _log.CustomWriteOnLog("PropiedadMoldura", "ddlEstadoMoldura = " + ddlEstadoMoldura.SelectedValue);
+            //    _log.CustomWriteOnLog("PropiedadMoldura", "txtStock = " + txtStock.Text);
+            //    _log.CustomWriteOnLog("PropiedadMoldura", "txtPrecio = " + txtPrecio.Text);
+            //    objDtoMoldura.DM_Precio = Double.Parse(txtPrecio.Text);
+            //    objDtoMoldura.IM_Estado = int.Parse(ddlEstadoMoldura.SelectedValue);
+            //    objDtoMoldura.IM_Stock = int.Parse(txtStock.Text);
+            //    objDtoMoldura.FK_ITM_Tipo = int.Parse(ddlTipoMoldura.SelectedValue);
+            //    objDtoMoldura.VM_Descripcion = txtDescripcion.Text;
+            //    objDtoMoldura.DM_Medida = Double.Parse(txtMedida.Text);
+            //    objCtrMoldura.ActualizarRegistroMoldura(objDtoMoldura);
+            //    _log.CustomWriteOnLog("PropiedadMoldura", "Actualizado");
+            //    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', 'Agregado', 'bottom', 'center', null, null);", true);
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
+            //    //HttpPostedFile objHttpPostedFile = FileUpload1.PostedFile;
+            //    //string ProfilePic_fileName = FileUpload1.PostedFile.FileName;
+            //    _log.CustomWriteOnLog("PropiedadMoldura", "1");
 
-                if (FileUpload1.HasFile == false)
-                {
-                    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', 'Debe agregar una imagen valida', 'bottom', 'center', null, null);", true);
+            //    if (FileUpload1.HasFile == false)
+            //    {
+            //        ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', 'Debe agregar una imagen valida', 'bottom', 'center', null, null);", true);
+            //        _log.CustomWriteOnLog("PropiedadMoldura", " 2");
 
-                }
-                else
-                {
-                    HttpPostedFile postedFile = FileUpload1.PostedFile;
-                    string FileName = Path.GetFileName(postedFile.FileName);
-                    string fileExtension = Path.GetExtension(postedFile.FileName);
-                    int fileSize = postedFile.ContentLength;
-                    _log.CustomWriteOnLog("PropiedadMoldura", "txtTipoMoldura = " + ddlTipoMoldura.SelectedValue);
-                    _log.CustomWriteOnLog("PropiedadMoldura", "ddlEstadoMoldura = " + ddlEstadoMoldura.SelectedValue);
-                    _log.CustomWriteOnLog("PropiedadMoldura", "txtStock = " + txtStock.Text);
-                    _log.CustomWriteOnLog("PropiedadMoldura", "txtPrecio = " + txtPrecio.Text);
+            //    }
+            //    else
+            //    {
+            //        _log.CustomWriteOnLog("PropiedadMoldura", "3");
+            //        HttpPostedFile postedFile = FileUpload1.PostedFile;
+            //        string FileName = Path.GetFileName(postedFile.FileName);
+            //        string fileExtension = Path.GetExtension(postedFile.FileName);
+            //        _log.CustomWriteOnLog("PropiedadMoldura", "4");
+            //        int fileSize = postedFile.ContentLength;
+            //        _log.CustomWriteOnLog("PropiedadMoldura", "txtTipoMoldura = " + ddlTipoMoldura.SelectedValue);
+            //        _log.CustomWriteOnLog("PropiedadMoldura", "ddlEstadoMoldura = " + ddlEstadoMoldura.SelectedValue);
+            //        _log.CustomWriteOnLog("PropiedadMoldura", "txtStock = " + txtStock.Text);
+            //        _log.CustomWriteOnLog("PropiedadMoldura", "txtPrecio = " + txtPrecio.Text);
 
-                    if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" || fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
-                    {
-                        Stream stream = postedFile.InputStream;
-                        BinaryReader binaryReader = new BinaryReader(stream);
-                        byte[] bytes = binaryReader.ReadBytes((int)stream.Length);
-                        objDtoMoldura.VBM_Imagen = bytes;
-                        objDtoMoldura.DM_Precio = Double.Parse(txtPrecio.Text);
-                        objDtoMoldura.IM_Estado = int.Parse(ddlEstadoMoldura.SelectedValue);
-                        objDtoMoldura.IM_Stock = int.Parse(txtStock.Text);
-                        objDtoMoldura.FK_ITM_Tipo = int.Parse(ddlTipoMoldura.SelectedValue);
-                        objDtoMoldura.VM_Descripcion = txtDescripcion.Text;
-                        objDtoMoldura.DM_Medida = Double.Parse(txtMedida.Text);
+            //        if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" || fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
+            //        {
+            //            Stream stream = postedFile.InputStream;
+            //            BinaryReader binaryReader = new BinaryReader(stream);
+            //            byte[] bytes = binaryReader.ReadBytes((int)stream.Length);
+            //            objDtoMoldura.VBM_Imagen = bytes;
+            //            objDtoMoldura.DM_Precio = Double.Parse(txtPrecio.Text);
+            //            objDtoMoldura.IM_Estado = int.Parse(ddlEstadoMoldura.SelectedValue);
+            //            objDtoMoldura.IM_Stock = int.Parse(txtStock.Text);
+            //            objDtoMoldura.FK_ITM_Tipo = int.Parse(ddlTipoMoldura.SelectedValue);
+            //            objDtoMoldura.VM_Descripcion = txtDescripcion.Text;
+            //            objDtoMoldura.DM_Medida = Double.Parse(txtMedida.Text);
 
-                        objCtrMoldura.registrarNuevaMoldura(objDtoMoldura);
-                        _log.CustomWriteOnLog("PropiedadMoldura", "Agregado");
-                        ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', 'Agregado', 'bottom', 'center', null, null);", true);
+            //            objCtrMoldura.registrarNuevaMoldura(objDtoMoldura);
+            //            _log.CustomWriteOnLog("PropiedadMoldura", "Agregado");
+            //            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', 'Agregado', 'bottom', 'center', null, null);", true);
 
-                    }
+            //        }
 
-                }
-            }
+            //    }
+            //    _log.CustomWriteOnLog("PropiedadMoldura", "Salio");
+            //}
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#defaultmodal').modal('show');</script>", false);
 
         }
         catch (Exception ex)
         {
-            _log.CustomWriteOnLog("PropiedadMoldura_aspx", "Error  = " + ex.Message + "posicion" + ex.StackTrace);
+            _log.CustomWriteOnLog("PropiedadMoldura", "Error  = " + ex.Message + "posicion" + ex.StackTrace);
 
             throw;
         }

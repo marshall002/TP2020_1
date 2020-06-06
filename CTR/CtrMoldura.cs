@@ -45,6 +45,11 @@ namespace CTR
         {
             objDaoMoldura.ActualizarImgMoldura(objmoldura);
         }
-        
+
+        public void registrarImgMoldura(byte[] bytes, int id)
+        {
+            objDaoMoldura.RegistrarImgMoldura(bytes, id);
+        }
+ 
     }
 }
