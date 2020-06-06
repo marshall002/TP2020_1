@@ -146,7 +146,7 @@
 
                                         </div>
                                         <div class="col-sm-3 right">
-                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always">
+                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn bg-indigo waves-effect" Style="float: right" Width="100%" Text="Guardar"
                                                         OnClick="btnGuardar_Click"></asp:Button>
@@ -166,6 +166,46 @@
                     <asp:PostBackTrigger ControlID="btnGuardar" />
                 </Triggers>
             </asp:UpdatePanel>
+
+            <div class="modal fade" id="defaultmodal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <asp:UpdatePanel runat="server" ID="updPanelModal" UpdateMode="Always">
+                        <ContentTemplate>
+                            <div class="modal-header navbar">
+                                <h4 class="modal-title" id="tituloModal" runat="server" style="color: white;"></h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="row">
+                                    <div class="text-center">
+                                        <asp:Image ID="Image2" Height="500px" Width="500px" runat="server" class="rounded" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row clearfix">
+                                            <div class="form-group form-float">
+                                                <label class="form-label">Descripción :</label>
+                                                <div class="form-line focused">
+                                                    <div class="form-line">
+                                                        <asp:TextBox ID="txtDescripcionModal" class="form-control" runat="server" ReadOnly></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
         </form>
 
     </section>

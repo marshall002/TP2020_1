@@ -194,6 +194,8 @@ public partial class Prueba : System.Web.UI.Page
 
                 }
             }
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#defaultmodal').modal('show');</script>", false);
+
         }
         catch (Exception ex)
         {
