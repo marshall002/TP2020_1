@@ -29,7 +29,7 @@
                                         <asp:Image ID="Image1" Height="500px" Width="500px" runat="server" class="rounded" />
 
                                         <%--<asp:FileUpload ID="FileUpload1" CssClass="btn btn-warning" runat="server" Width="100%" ClientIDMode="Static" />--%>
-                                        <input name="fileAnexo" type="file" id="FileUpload1" accept=".png,.jpg" class="btn btn-warning" style="width: 100%;" />
+                                        <input name="fileAnexo" type="file" id="FileUpload1" accept=".png,.jpg" class="btn btn-warning" style="width: 100%;" required/>
                                         <br />
                                         <%--<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" />--%>
                                     </div>
@@ -59,7 +59,7 @@
                                     <div class="row clearfix">
                                         <div class="col-sm-12">
                                             <label class="form-label">Tipo de moldura</label>
-                                            <asp:DropDownList ID="ddlTipoMoldura" class="form-control" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlTipoMoldura" class="form-control" runat="server" required></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                                 <label class="form-label">Medida</label>
                                                 <div class="form-line focused">
                                                     <div class="form-line">
-                                                        <asp:TextBox ID="txtMedida" class="form-control" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtMedida" Type="number" class="form-control" runat="server" required></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,7 +83,7 @@
                                     <div class="row clearfix">
                                         <div class="col-sm-12">
                                             <label class="form-label">Estado</label>
-                                            <asp:DropDownList runat="server" ID="ddlEstadoMoldura" CssClass="form-control" OnSelectedIndexChanged="ddlEstadoMoldura_SelectedIndexChanged">
+                                            <asp:DropDownList runat="server" ID="ddlEstadoMoldura" CssClass="form-control" OnSelectedIndexChanged="ddlEstadoMoldura_SelectedIndexChanged" required>
                                                 <asp:ListItem Value="">--Seleccione--</asp:ListItem>
                                                 <asp:ListItem Value="1">Habilitado</asp:ListItem>
                                                 <asp:ListItem Value="0">Deshabilitado</asp:ListItem>
@@ -98,7 +98,7 @@
                                                 <label class="form-label">Stock</label>
                                                 <div class="form-line focused">
                                                     <div class="form-line">
-                                                        <asp:TextBox ID="txtStock" class="form-control" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtStock" Type="number" class="form-control" runat="server" required></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,7 +112,7 @@
                                                 <label class="form-label">Precio S/.</label>
                                                 <div class="form-line focused">
                                                     <div class="form-line">
-                                                        <asp:TextBox ID="txtPrecio" class="form-control" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtPrecio" Type="number" class="form-control" runat="server" required></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,7 +127,7 @@
                                             <div class="form-group">
                                                 <label class="form-label">Descripción</label>
                                                 <div class="form-line">
-                                                    <asp:TextBox ID="txtDescripcion" runat="server" TextMode="multiline" Rows="4" class="form-control no-resize"></asp:TextBox>
+                                                    <asp:TextBox ID="txtDescripcion" runat="server" TextMode="multiline" Rows="4" class="form-control no-resize" ></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>

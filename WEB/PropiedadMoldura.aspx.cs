@@ -140,6 +140,7 @@ public partial class Prueba : System.Web.UI.Page
                 objCtrMoldura.registrarNuevaMoldura(objDtoMoldura);
                 int ValorDevuelto = objDtoMoldura.PK_IM_Cod;
                 _log.CustomWriteOnLog("PropiedadMoldura", "PK_IM_Cod valor retornado " + objDtoMoldura.PK_IM_Cod);
+                Utils.AddScriptClientUpdatePanel(upBotonEnviar, "uploadFileDocuments(" + objDtoMoldura.PK_IM_Cod + ");");
                 _log.CustomWriteOnLog("PropiedadMoldura", "Agregado");
                 Utils.AddScriptClientUpdatePanel(upBotonEnviar, "showSuccessMessage2()");
                 _log.CustomWriteOnLog("PropiedadMoldura", "Salio");
