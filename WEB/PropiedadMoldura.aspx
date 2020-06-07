@@ -245,7 +245,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_footer" runat="Server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cph_Js" runat="Server">
-    <script src="UploadFile.js"></script>
+
+    <script src="js/Aplicacion/UploadFile.js"></script>
     <script>
         function showSuccessMessage2() {
             setTimeout(function () {

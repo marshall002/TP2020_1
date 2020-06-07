@@ -50,6 +50,12 @@ namespace CTR
         {
             objDaoMoldura.RegistrarImgMoldura(bytes, id);
         }
- 
+
+        public DataTable ListarMoldurasByTipoMoldura(DtoTipoMoldura objDtoTipoMoldura)
+        {
+            return objDaoMoldura.ListarMoldurasByTipoMoldura(objDtoTipoMoldura);
+        }
+
+
     }
 }

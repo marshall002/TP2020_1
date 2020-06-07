@@ -38,11 +38,7 @@ public partial class Prueba : System.Web.UI.Page
             }
         }
     }
-
-    protected void btnUpload_Click(object sender, EventArgs e)
-    {
-
-    }
+    
     public void OpcionesTipoMoldura()
     {
         DataSet ds = new DataSet();

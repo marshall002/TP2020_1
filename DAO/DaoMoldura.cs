@@ -28,6 +28,19 @@ namespace DAO
             conexion.Close();
             return dtmolduras;
         }
+        public DataTable ListarMoldurasByTipoMoldura(DtoTipoMoldura objtipo)
+        {
+            DataTable dtmolduras = null;
+            conexion.Open();
+            SqlCommand command = new SqlCommand("SP_Listar_Moldura_by_TipoMoldura", conexion);
+            command.Parameters.AddWithValue("@idTipoMold", objtipo.PK_ITM_Tipo);
+            SqlDataAdapter daAdaptador = new SqlDataAdapter(command);
+            command.CommandType = CommandType.StoredProcedure;
+            dtmolduras = new DataTable();
+            daAdaptador.Fill(dtmolduras);
+            conexion.Close();
+            return dtmolduras;
+        }
         public void RegistrarMoldura(DtoMoldura objmoldura)
         {
             SqlCommand command = new SqlCommand("SP_Registrar_Moldura", conexion);
@@ -96,7 +109,6 @@ namespace DAO
             command.ExecuteNonQuery();
             conexion.Close();
         }
-
         public DataSet desplegableTipoMoldura()
         {
             SqlDataAdapter tipomol = new SqlDataAdapter("SP_Desplegable_Tipo_Moldura", conexion);

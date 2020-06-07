@@ -12,8 +12,9 @@ using System.Data.SqlClient;
 
 public partial class GestionCatalogo : System.Web.UI.Page
 {
-    CtrMoldura objctrMoldura = new CtrMoldura();
+    CtrMoldura objCtrMoldura = new CtrMoldura();
     DtoMoldura objDtoMoldura = new DtoMoldura();
+    DtoTipoMoldura objDtoTipoMoldura = new DtoTipoMoldura();
     Log _log = new Log();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,7 +22,9 @@ public partial class GestionCatalogo : System.Web.UI.Page
         {
             try
             {
-                gvCatalogo.DataSource = objctrMoldura.ListaMolduras();
+                OpcionesTipoMoldura();
+
+                gvCatalogo.DataSource = objCtrMoldura.ListaMolduras();
                 gvCatalogo.DataBind();
             }
             catch (Exception ex)
@@ -51,7 +54,7 @@ public partial class GestionCatalogo : System.Web.UI.Page
                 string Nombre = colsNoVisible[1].ToString();
                 //ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "showNotification", "showNotification('bg-red', '" + Nombre + "', 'bottom', 'center', null, null);", true);
                 objDtoMoldura.PK_IM_Cod = int.Parse(id);
-                objctrMoldura.ObtenerImagen_Desc_Moldura(objDtoMoldura);
+                objCtrMoldura.ObtenerImagen_Desc_Moldura(objDtoMoldura);
                 _log.CustomWriteOnLog("GestionCatalogo", "ID" + id);
                 _log.CustomWriteOnLog("GestionCatalogo", "Descripcion" + objDtoMoldura.VM_Descripcion);
                 _log.CustomWriteOnLog("GestionCatalogo", "VBM_Imagen" + objDtoMoldura.VBM_Imagen);
@@ -95,7 +98,7 @@ public partial class GestionCatalogo : System.Web.UI.Page
             int index = Convert.ToInt32(e.CommandArgument);
             var colsNoVisible = gvCatalogo.DataKeys[index].Values;
             string id = colsNoVisible[0].ToString();
-            Response.Redirect("~/PropiedadMoldura.aspx?ID="+id);
+            Response.Redirect("~/PropiedadMoldura.aspx?ID=" + id);
         }
     }
 
@@ -114,9 +117,46 @@ public partial class GestionCatalogo : System.Web.UI.Page
             }
         }
     }
+    public void OpcionesTipoMoldura()
+    {
+        DataSet ds = new DataSet();
+        ds = objCtrMoldura.OpcionesTipoMoldura();
+        ddl_TipoMoldura.DataSource = ds;
+        ddl_TipoMoldura.DataTextField = "VTM_Nombre";
+        ddl_TipoMoldura.DataValueField = "PK_ITM_Tipo";
+        ddl_TipoMoldura.DataBind();
+        ddl_TipoMoldura.Items.Insert(0, new ListItem("Seleccione", "0"));
+
+    }
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
+        try
+        {
+            if (ddl_TipoMoldura.SelectedValue != "0")
+            {
+                _log.CustomWriteOnLog("GestionarCatalogo", "Entro a busqueda");
+                objDtoTipoMoldura.PK_ITM_Tipo = int.Parse(ddl_TipoMoldura.SelectedValue);
+                _log.CustomWriteOnLog("GestionarCatalogo", "objDtoTipoMoldura.PK_ITM_Tipo : "+ objDtoTipoMoldura.PK_ITM_Tipo);
+                UpdatePanel.Update();
+                gvCatalogo.DataSource = objCtrMoldura.ListarMoldurasByTipoMoldura(objDtoTipoMoldura);
+                gvCatalogo.DataBind();
+                _log.CustomWriteOnLog("GestionarCatalogo", "Paso");
+            }
+            else
+            {
+                UpdatePanel.Update();
+                gvCatalogo.CssClass = "table table-bordered table-hover js-basic-example dataTable";
+                gvCatalogo.DataSource = objCtrMoldura.ListaMolduras();
+                gvCatalogo.DataBind();
+            }
+        }
+        catch (Exception ex)
+        {
+            _log.CustomWriteOnLog("GestionarCatalogo", "Error busqueda :" +ex.Message);
 
+            throw;
+        }
+        
     }
 }
